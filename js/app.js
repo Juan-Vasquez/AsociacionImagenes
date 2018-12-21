@@ -5,6 +5,7 @@ var nuevosDulces = 0;
 var tiempo = 0;
 var min = 2;
 var seg = 0;
+var intervalo = 0;
 //-------------------------
 
 
@@ -96,11 +97,44 @@ function eliminarFilas(){
 	}
 }
 
-function eliminar(){
+function eliminarGrupo(){
 	eliminarColumnas()
 	eliminarFilas()
 }
 
+function Desplazamiento(){
+	i = i+1
+	$(".elemento").draggable({disable: true})
+	if(i<8){
+		for(var n = 1; n<8; n++){
+			if($(".col-"+n).children("img:nth-child("+n+")").html() == null){
+				var numero = Math.floor((Math.random() * 4) + 1);
+				var imagen = "image/"+numero+".png";
+				$(".col-"+n).prepend("<img src="+imagen+" class='elemento'/>").css("justify-content","flex-star")
+			}
+		}
+	}
+	if(i == 8){
+		clearInterval(intervalo);
+		eliminar = setInterval(function(){
+			eliminarHover()
+		},150)
+	}
+}
+
+function eliminarHover(){
+	matriz = 0;
+	horizontal = recorrerFilas();
+	vertical = recorrerColumnas();
+
+	for(var n = 1; n<8; n++){
+		matriz = matriz +$(".col-"+n).children().length;
+	}
+
+
+
+
+}
 //-------------Funcion para el tiempo del Juego-------------------
 function Tiempo(){
 	
@@ -142,6 +176,9 @@ $(".btn-reinicio").click(function(){
 	tiempo = setInterval(function(){
 		Tiempo();
 	},1000);
+	intervalo = setInterval(function(){
+		Desplazamiento()
+	},600);
 });
 
 // Evento para el titulo Match Game

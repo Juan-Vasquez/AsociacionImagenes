@@ -7,6 +7,7 @@ var min = 2;
 var seg = 0;
 //-------------------------
 
+
 //Animacion que cambia color al titulo Match Game
 function Blanco(elemento){
 	$(elemento).animate(

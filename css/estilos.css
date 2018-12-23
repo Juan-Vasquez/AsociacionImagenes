@@ -99,6 +99,10 @@ div[class^='col']{
 
 }
 
+.termino{
+  display: none;
+}
+
 .elemento{
   width: 99.4px;
   height: 95px;
